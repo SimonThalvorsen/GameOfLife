@@ -36,7 +36,7 @@ class Cell:
 
     def update(self) -> None:
         (
-            self.set_alive
+            self.set_alive()
             if (
                 self._num_living_neighbours == 3
                 or (self.is_alive() and self._num_living_neighbours == 2)
