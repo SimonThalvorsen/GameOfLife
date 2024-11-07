@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import override
 
 
@@ -42,3 +43,6 @@ class Cell:
             )
             else self.set_dead()
         )
+
+    def add_neighbour(self, cell: Cell) -> None:
+        self._neighbours.append(cell)
