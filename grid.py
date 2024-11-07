@@ -11,11 +11,8 @@ class Grid:
         self._set_start_state()
         self._set_neighbours_all()
 
-    def _create_row(self) -> list[Cell]:
-        return [Cell() for _ in range(self._rows)]
-
     def _fill_grid(self) -> list[list[Cell]]:
-        return [self._create_row() for _ in range(self._cols)]
+        return [[Cell() for _ in range(self._rows)] for _ in range(self._cols)]
 
     def _set_start_state(self) -> None:
         for row in self._grid:
@@ -48,3 +45,6 @@ class Grid:
 
     def get_num_alive(self) -> int:
         return sum(1 for cell in self.get_all_cells() if cell.is_alive())
+
+    def get_grid(self) -> list[list[Cell]]:
+        return self._grid
