@@ -3,8 +3,8 @@ from random import randint, seed
 
 
 class Grid:
-    def __init__(self, rows: int = 25, cols: int = 25) -> None:
-        seed(123)
+    def __init__(self, rows: int = 25, cols: int = 25, seed_arg: int = 123) -> None:
+        seed(seed_arg)
         self._rows = rows
         self._cols = cols
         self._grid = self._fill_grid()
@@ -45,3 +45,14 @@ class Grid:
 
     def get_grid(self) -> list[list[Cell]]:
         return self._grid
+
+    def update(self):
+        cells = self.get_all_cells()
+        for cell in cells:
+            cell.live_neighbours()
+        for cell in cells:
+            cell.update()
+
+    def draw(self):
+        for row in self._grid:
+            print(*row)
