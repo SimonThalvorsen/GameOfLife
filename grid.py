@@ -21,11 +21,11 @@ class Grid:
                     cell.set_alive()
 
     def _set_neighbours(self, row: int, col: int) -> None:
-        for i in range(-1, 1):
-            for j in range(-1, 1):
+        for i in range(-1, 2):
+            for j in range(-1, 2):
                 if i == 0 == j:
                     continue
-                if row + i == -1 or col + j == -1:
+                if row + i in [-1, self._rows] or col + j in [-1, self._cols]:
                     continue
                 self._grid[row][col].add_neighbour(self._grid[row + i][col + j])
 
@@ -38,10 +38,7 @@ class Grid:
         return self._grid[row][column]
 
     def get_all_cells(self) -> list[Cell]:
-        return [
-            self._grid[row][col]
-            for row, col in zip(range(self._rows), range(self._cols))
-        ]
+        return [cell for row in self._grid for cell in row]
 
     def get_num_alive(self) -> int:
         return sum(1 for cell in self.get_all_cells() if cell.is_alive())
